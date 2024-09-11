@@ -1,0 +1,32 @@
+from tkinter import *
+import calendar
+from tkinter import scrolledtext
+
+def show_calendar():
+    year = int(year_entry.get())
+    cal_text = calendar.TextCalendar().formatyear(year)
+
+    cal_window = Toplevel(root)
+    cal_window.title(f"Calendar for {year}")
+
+    calendar_display = scrolledtext.ScrolledText(cal_window, width=80, height=20, font=("Courier", 10))
+    calendar_display.pack(pady=10)
+    calendar_display.insert(INSERT, cal_text)
+
+root = Tk()
+root.title("Yearly Calendar")
+root.geometry("400x200")
+
+year_label = Label(root, text="Enter Year:")
+year_label.pack(pady=10)
+
+year_entry = Entry(root)
+year_entry.pack(pady=5)
+
+show_btn = Button(root, text="Show Calendar", command=show_calendar)
+show_btn.pack(pady=10)
+
+exit_btn = Button(root, text="Exit", command=root.destroy)
+exit_btn.pack(pady=10)
+
+root.mainloop()
